@@ -48,10 +48,10 @@ class Address(object):
     def __init__(self, address, preflen=64):
         super(Address, self).__init__()
 
-        if self.__is_network_address(address):
-            self.address = address
-        elif self.__is_printable_address(address):
+        if self.__is_printable_address(address):
             self.address = socket.inet_pton(AF_INET6, address)
+        elif self.__is_network_address(address):
+            self.address = address
         else:
             raise ValueError("Cannot parse address %s" % repr(address))
 
